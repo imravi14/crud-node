@@ -1,0 +1,37 @@
+<%- include("./partials/header") -%>
+<div style="padding-left: 16px">
+  <h2>YOUR DATA</h2>
+</div>
+<div class="data">
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>E-Mail</th>
+      <th>Password</th>
+      <th>Colors</th>
+      <th>Gender</th>
+      <th>Country</th>
+      <th>Content</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    <% if(typeof data==typeof []){ %> <% data.forEach(user => { %>
+    <tr>
+      <td><img src="images/<%= user.image %>" alt="" width="300px" /></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.password %></td>
+      <td><%= user.color %></td>
+      <td><%= user.gender %></td>
+      <td><%= user.country %></td>
+      <td><%= user.content %></td>
+      <td><a href="/update/<%= user._id  %>" class="cta-btn">Update</a></td>
+      <td><a href="/delete/<%= user._id  %>" class="cta-btn-alt">Delete</a></td>
+    </tr>
+    <%}); %> <%}else{%>
+    <h1>No Records</h1>
+    <%} %>
+  </table>
+</div>
+<%- include("./partials/footer") -%>

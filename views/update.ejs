@@ -1,0 +1,128 @@
+<%- include("./partials/header.ejs") -%>
+
+<div style="padding-left: 16px">
+  <h2>UPDATE YOUR DATA</h2>
+</div>
+<!---Form-->
+
+<div class="data">
+<div class="container">
+  <form
+    action="/update/<%= user._id  %>"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">First Name</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="text"
+          id="fname"
+          value="<%= user.name  %>"
+          name="name"
+          placeholder="Your name.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="email">E-mail</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="email"
+          id="email"
+          value="<%= user.email  %>"
+          name="email"
+          placeholder="Your email.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="password">Password</label>
+      </div>
+      <div class="col-75">
+        <input
+          type="password"
+          id="password"
+          value="<%= user.password  %>"
+          name="password"
+          placeholder="Your Password.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="Image">Image</label>
+      </div>
+      <div class="col-75">
+        <input type="file" id="Image" name="image" />
+        <img src="/images/<%= user.image %>" width="20%" />
+      </div>
+      <input type="hidden" name="old_image" value="<%= user.image %>" />
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="">Colors</label>
+      </div>
+      <!-- Assuming you have a variable 'blog' with property 'color' containing an array of selected colors -->
+      <div class="col-75">
+        Red<input type="checkbox" value="red" name="color" <% if
+        (user.color.includes('red')) { %>checked<% } %> /> Blue<input
+        type="checkbox" value="Blue" name="color" <% if
+        (user.color.includes('Blue')) { %>checked<% } %> /> Black<input
+        type="checkbox" value="Black" name="color" <% if
+        (user.color.includes('Black')) { %>checked<% } %> /> Green<input
+        type="checkbox" value="Green" name="color" <% if
+        (user.color.includes('Green')) { %>checked<% } %> /> Voilet<input
+        type="checkbox" value="Voilet" name="color" <% if
+        (user.color.includes('Voilet')) { %>checked<% } %> />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="gender">Gender</label>
+      </div>
+      <div class="col-75">
+        Male<input type="radio" id="genderMale" name="gender" value="Male" <% if
+        (user.gender === 'Male') { %>checked<% } %> /> Female<input type="radio"
+        id="genderFemale" name="gender" value="Female" <% if (user.gender ===
+        'Female') { %>checked<% } %> />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Country</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="country">
+          <option value="australia" <%= (user.country === 'australia') ? 'selected' : '' %>>Australia</option>
+          <option value="canada" <%= (user.country === 'canada') ? 'selected' : '' %>>Canada</option>
+          <option value="usa" <%= (user.country === 'usa') ? 'selected' : '' %>>USA</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Content</label>
+      </div>
+      <div class="col-75">
+        <textarea
+          id="subject"
+          name="content"
+          placeholder="Write something.."
+          style="height: 200px"
+        >
+      <%= user.content  %></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Update" />
+    </div>
+  </form>
+</div>
+</div>
+<%- include("./partials/footer.ejs") -%>
